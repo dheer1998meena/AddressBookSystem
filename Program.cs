@@ -7,52 +7,69 @@ namespace AddressBookSystem
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-            string firstName;
-            string lastName;
-            string address;
-            string city;
-            string state;
-            string zip;
-            string phoneNumber;
-            string email;
-            Console.WriteLine("Welcome to Address Book Program");
+            int choice = 0;
+            AddressBook ab = new AddressBook();
+            do
+            {
+                Console.WriteLine("Enter your choice :");
+                Console.WriteLine("1. Add Contact.");
+                Console.WriteLine("2. View all Contacts.");
+                Console.WriteLine("3.Edit existing contacts.");
+                Console.WriteLine("4.Exit.");
+                choice = Convert.ToInt32(Console.ReadLine());
 
-            AddressBook addressBook = new AddressBook();
+                if (choice == 1)
+                {
 
-            Console.WriteLine("Enter the first name of contact");
-            firstName = Console.ReadLine();
+                    Console.WriteLine("Enter your Name : ");
+                    String name = Console.ReadLine();
+                    Console.WriteLine("Enter your address : ");
+                    String address = Console.ReadLine();
+                    Console.WriteLine("Enter your city : ");
+                    String city = Console.ReadLine();
+                    Console.WriteLine("Enter your state : ");
+                    String state = Console.ReadLine();
+                    Console.WriteLine("Enter your zip : ");
+                    String zip = Console.ReadLine();
+                    Console.WriteLine("Enter your contact no. : ");
+                    String contactNo = Console.ReadLine();
+                    Console.WriteLine("Enter your email : ");
+                    String mailID = Console.ReadLine();
 
-            Console.WriteLine("Enter the last name of contact");
-            lastName = Console.ReadLine();
+                    Contact c = new Contact(name, address, city, state, zip, contactNo, mailID);
 
-            Console.WriteLine("Enter the address of contact");
-            address = Console.ReadLine();
-
-            Console.WriteLine("Enter the city name of contact");
-            city = Console.ReadLine();
-
-            Console.WriteLine("Enter the state name of contact");
-            state = Console.ReadLine();
-
-            Console.WriteLine("Enter the zip of locality of contact");
-            zip = Console.ReadLine();
-
-            Console.WriteLine("Enter the phone number of contact");
-            phoneNumber = Console.ReadLine();
-
-            Console.WriteLine("Enter the email of contact");
-            email = Console.ReadLine();
-
-            // Adding contact into address book
-            addressBook.AddContact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-
-            // Searching phone Number by contact name
-            Console.WriteLine("Enter the name of candidate to get Phone number");
-            addressBook.DisplayPhoneNumber(Console.ReadLine());
-
+                    ab.AddAddress(c);
+                }
+                else if (choice == 2)
+                {
+                    List<Contact> li = ab.ViewAddressBook();
+                    foreach (Contact cl in li)
+                    {
+                        Console.WriteLine("Name : " + cl.GetName());
+                        Console.WriteLine("Address : " + cl.GetAddress());
+                        Console.WriteLine("City : " + cl.GetCity());
+                        Console.WriteLine("State : " + cl.GetState());
+                        Console.WriteLine("zip : " + cl.GetZip());
+                        Console.WriteLine("Contact No. : " + cl.GetPhoneNo());
+                        Console.WriteLine("Email ID : " + cl.GetEmail());
+                    }
+                }
+                else if (choice == 3)
+                {
+                    Console.WriteLine("Enter the name :");
+                    String ename = Console.ReadLine();
+                    Console.WriteLine("Enter the new number for " + ename);
+                    String newnumber = Console.ReadLine();
+                    ab.EditNumber(ename, newnumber);
+                }
+                else
+                {
+                    break;
+                }
+            } while (choice != 4);
         }
     }
+    
 }
