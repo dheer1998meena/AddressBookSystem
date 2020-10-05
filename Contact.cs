@@ -6,51 +6,25 @@ namespace AddressBookSystem
 {
     class Contact
     {
-        private string name;
-        private string address;
-        private string city;
-        private string state;
-        private string zip;
-        private string phoneNo;
-        private string email;
+        public string firstName;
+        public string lastName;
+        public string address;
+        public string city;
+        public string state;
+        public string zip;
+        public string phoneNumber;
+        public string email;
 
-        public Contact(string name, string address, string city, string state, string zip, string phoneNo, string email)
+        public Contact(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
         {
-            this.name = name;
+            this.firstName = firstName;
+            this.lastName = lastName;
             this.address = address;
             this.city = city;
             this.state = state;
             this.zip = zip;
-            this.phoneNo = phoneNo;
+            this.phoneNumber = phoneNumber;
             this.email = email;
-        }
-        public String GetName()
-        {
-            return name;
-        }
-        public String GetAddress()
-        {
-            return address;
-        }
-        public String GetCity()
-        {
-            return city;
-        }
-        public String GetState()
-        {
-            return state;
-        }
-        public String GetZip()
-        {
-            return zip;
-        }
-        public String GetPhoneNo()
-        {
-            return phoneNo;
-        }
-        public String GetEmail()
-        {
-            return email;
         }
     }
 }
