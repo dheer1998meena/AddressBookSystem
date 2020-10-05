@@ -1,24 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AddressBookSystem
 {
     class AddressBook
     {
-        private List<Contact> list = new List<Contact>();
-        public List<Contact> GetList()
+        public Dictionary<string, Contact> contactList = new Dictionary<string, Contact>();
+        public void AddContact(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
         {
-            return list;
+            Contact addNewContact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+            contactList.Add(firstName + lastName, addNewContact);
+            Console.WriteLine("Contact Added");
         }
-        public void AddAddress(Contact contact)
-        {
-            list.Add(contact);
 
-        }
-        public List<Contact> ViewAddressBook()
+        public void DisplayPhoneNumber(string Name)
         {
-            return list;
+            foreach (KeyValuePair<string, Contact> keyValuePair in contactList)
+            {
+                if ((keyValuePair.Key).Contains(Name))
+                    Console.WriteLine("Phone number of searched {0} is {1}", Name, (keyValuePair.Value).phoneNumber);
+            }
         }
     }
 }
