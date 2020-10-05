@@ -7,20 +7,29 @@ namespace AddressBookSystem
 {
     class AddressBook
     {
-        public Dictionary<string, Contact> contactList = new Dictionary<string, Contact>();
-        public void AddContact(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
+        private List<Contact> list = new List<Contact>();
+        public List<Contact> GetList()
         {
-            Contact addNewContact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-            contactList.Add(firstName + lastName, addNewContact);
-            Console.WriteLine("Contact Added");
+            return list;
         }
-
-        public void DisplayPhoneNumber(string Name)
+        public void AddAddress(Contact c)
         {
-            foreach (KeyValuePair<string, Contact> keyValuePair in contactList)
+            list.Add(c);
+
+        }
+        public List<Contact> ViewAddressBook()
+        {
+            return list;
+        }
+        public void EditNumber(String ename, String newnumber)
+        {
+            foreach (Contact cc in list)
             {
-                if ((keyValuePair.Key).Contains(Name))
-                    Console.WriteLine("Phone number of searched {0} is {1}", Name, (keyValuePair.Value).phoneNumber);
+                if (cc.GetName().Equals(ename))
+                {
+                    cc.SetPhoneNo(newnumber);
+                    Console.WriteLine("Number edited successfully");
+                }
             }
         }
     }
