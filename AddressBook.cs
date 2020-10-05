@@ -8,14 +8,29 @@ namespace AddressBookSystem
     class AddressBook
     {
         private List<Contact> list = new List<Contact>();
+        private Dictionary<string, Contact> d = new Dictionary<string, Contact>();
         public List<Contact> GetList()
         {
             return list;
         }
-        public void AddAddress(Contact c)
+        public Dictionary<string, Contact> GetDictionary()
+        {
+            return d;
+        }
+        public void AddAddress(string kname, Contact c)
         {
             list.Add(c);
+            d.Add(kname, c);
 
+        }
+        public Contact ViewByKeyName(string kname)
+        {
+            foreach (KeyValuePair<string, Contact> kvp in d)
+            {
+                if (kvp.Key == kname)
+                    return kvp.Value;
+            }
+            return null;
         }
         public List<Contact> ViewAddressBook()
         {
